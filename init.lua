@@ -30,8 +30,8 @@ vim.lsp.enable('mdoxide')
 
 -- waiting for 0.12
 vim.pack.add({
-    "https://github.com/zootedb0t/citruszest.nvim",
+    "https://github.com/zenbones-theme/zenbones.nvim",
 })
 
-require('citruszest').setup()
-vim.cmd("colorscheme citruszest")
+require('zenbones').setup()
+vim.cmd("colorscheme zenbones")
