@@ -1,6 +1,5 @@
 require('options')
 
-
 vim.lsp.config('*', {
     capabilities = {
         textDocument = {
@@ -17,8 +16,6 @@ vim.lsp.config('*', {
     root_markers = { '.git' },
 })
 
-require('lsp')
-
 vim.lsp.enable('luals')
 vim.lsp.enable('gopls')
 vim.lsp.enable('tsls')
@@ -28,10 +25,12 @@ vim.lsp.enable('jdtls')
 vim.lsp.enable('rustanal')
 vim.lsp.enable('mdoxide')
 
--- waiting for 0.12
-vim.pack.add({
-    "https://github.com/zenbones-theme/zenbones.nvim",
-})
+require('lsp')
 
-require('zenbones').setup()
+-- waiting for 0.12
+-- vim.pack.add({
+--     "https://github.com/zenbones-theme/zenbones.nvim",
+-- })
+--
+-- require('zenbones').setup()
 vim.cmd("colorscheme zenbones")
