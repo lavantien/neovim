@@ -5,6 +5,7 @@ giga minimal neovim config for programmers
 ## requirements
 
 - neovim 0.12+
+- git, fzf, rg, fd, bat, delta, chafa
 - **lua, luajit**, lua-language-server
 - **c, llvm, clang**, clangd
 - **go**, gopls
@@ -34,65 +35,120 @@ gup update && cargo install-update -a && scoop update -a && winget upgrade --all
 
 ## keymap
 
-### Custom Keymaps
+`<leader>` key is set to `Space`.
 
-These are the keybindings explicitly defined in the configuration files.
+### General & Custom Keybinds
 
-| Keymap | Mode | Action | Description |
-| :--- | :--- | :--- | :--- |
-| ` ` (Space) | | `mapleader` | The leader key for custom shortcuts. |
-| `<leader>q` | Normal | `:quit<CR>` | Quits current window (e.g. location list). |
-| `-` | Normal | `<CMD>Oil<CR>` | Opens the parent directory using oil.nvim. |
-| `<leader>b` | Normal | `vim.lsp.buf.format` | Formats the current buffer using the LSP. |
-| `<leader>f` | Normal | `MiniPick.builtin.files` | Finds files using mini.pick. |
-| `<leader>g` | Normal | `MiniPick.builtin.grep_live` | Performs a live grep search using mini.pick. |
-| `<leader>h` | Normal | `MiniPick.builtin.help` | Shows help for mini.pick. |
-| `<leader>p` | Normal | `:TypstPreviewToggle<CR>` | Toggles the typst-preview. |
-| `<C-Space>` | Insert | `vim.lsp.completion.get()` | Triggers LSP completion. |
+These are your top-level custom mappings for various actions within Neovim.
 
-### Neovim LSP Default Keymaps (0.11+)
-
-These are the modern default keybindings that Neovim provides when an LSP client attaches to a buffer.
-
-| Keymap | Mode | Action | Description |
-| :--- | :--- | :--- | :--- |
-| `K` | Normal | `vim.lsp.buf.hover()` | Shows hover information for the symbol under the cursor. |
-| `gd` | Normal | `vim.lsp.buf.definition()` | Goes to the definition of the symbol under the cursor. |
-| `gD` | Normal | `vim.lsp.buf.declaration()` | Goes to the declaration of the symbol under the cursor. |
-| `gri` | Normal | `vim.lsp.buf.implementation()` | Lists all implementations for the symbol under the cursor. |
-| `gO` | Normal | `vim.lsp.buf.document_symbol()` | Shows a "table of contents" or outline of symbols in the current document. |
-| `go` | Normal | `vim.lsp.buf.type_definition()` | Goes to the type definition of the symbol under the cursor. |
-| `grr` | Normal | `vim.lsp.buf.references()` | Lists all references to the symbol under the cursor. |
-| `grn` | Normal | `vim.lsp.buf.rename()` | Renames all references to the symbol under the cursor. |
-| `gra` | Normal, Visual | `vim.lsp.buf.code_action()` | Selects a code action from a list of available actions. |
-| `CTRL-S` | Insert, Select | `vim.lsp.buf.signature_help()` | Displays signature information for the function being called. |
-
-### Diagnostic and List Navigation
-
-These keymaps are for navigating through diagnostics (errors, warnings) and various lists like quickfix and location lists.
-
-| Keymap | Action |
-| :--- | :--- |
-| `[d`, `]d` | Move between diagnostics in the current buffer. |
-| `[D`, `]D` | Jump to the first or last diagnostic in the buffer. |
-| `[q`, `]q` | Navigate through the quickfix list. |
-| `[Q`, `]Q` | Jump to the first or last item in the quickfix list. |
-| `[l`, `]l` | Navigate through the location list. |
-| `[L`, `]L` | Jump to the first or last item in the location list. |
-| `[b`, `]b` | Navigate through the buffer list. |
-| `[B`, `]B` | Jump to the first or last buffer in the list. |
-| `[t`, `]t` | Navigate through the tag matchlist. |
-| `[a`, `]a` | Navigate through the argument list. |
-
-### Insert and Completion Keymaps
-
-These are standard Neovim keybindings for completion in insert mode.
-
-| Keymap | Action | Description |
+| Mode | Keybinding | Action |
 | :--- | :--- | :--- |
-| `<C-x><C-o>` | `vim.lsp.omnifunc` | Triggers omni completion, typically powered by the LSP. |
-| `<C-n>` / `<C-p>` | Next/Previous Item | Navigates up and down the completion menu. |
-| `<C-e>` | End Completion | Stops completion without inserting the selected item. |
-| `<C-y>` | Accept Completion | Stops and accepts the currently selected completion item. |
-| `<C-x><C-f>` | File Path Completion | Completes file and directory names. |
-| `<C-x><C-l>` | Whole Line Completion | Completes entire lines based on other lines in the buffer. |
+| Normal | `<leader>q` | Quits Neovim. |
+| Normal | `-` | Opens the parent directory in `oil.nvim`. |
+| Normal | `<leader>p` | Toggles the `typst-preview` window. |
+| Normal | `<leader>u` | Triggers an update for your installed packages. |
+| Normal | `[<Space>` | Adds an empty line above the cursor. |
+| Normal | `]<Space>` | Adds an empty line below the cursor. |
+
+### FZF-Lua Keybinds
+
+You have configured `fzf-lua` for searching files, git history, LSP features, and more.
+
+| Mode | Keybinding | Action |
+| :--- | :--- | :--- |
+| **General** | | |
+| Normal | `<leader>e` | Global search across various sources. |
+| Normal | `<leader>n` | Combined search (files, buffers, etc.). |
+| Normal | `<leader>/` | Grep for a pattern in the current buffer. |
+| Normal | `<leader>z` | Live grep across your project. |
+| Normal | `<leader>f` | Search for files by name. |
+| Normal | `<leader>h` | Search help tags. |
+| Normal | `<leader>k` | Search available keymaps. |
+| Normal | `<leader>l` | Search the location list. |
+| Normal | `<leader>m` | Search marks. |
+| Normal | `<leader>t` | Search the quickfix list. |
+| **Git** | | |
+| Normal | `<leader>gf` | Search through Git files in the current repository. |
+| Normal | `<leader>gs` | Show Git status. |
+| Normal | `<leader>gd` | Show Git diff. |
+| Normal | `<leader>gh` | Search through Git hunks. |
+| Normal | `<leader>gc` | Search through Git commits. |
+| Normal | `<leader>gl` | View Git blame for the current file. |
+| Normal | `<leader>gb` | Search and switch between Git branches. |
+| Normal | `<leader>gt` | Search Git tags. |
+| Normal | `<leader>gk` | Search your Git stash. |
+| **LSP (via FZF)** | | |
+| Normal | `<leader>\\` | General LSP finder. |
+| Normal | `<leader>d` | Show diagnostics for the current document. |
+| Normal | `<leader>'` | Show diagnostics for the entire workspace. |
+| Normal | `<leader>,` | Find incoming calls for the symbol under the cursor. |
+| Normal | `<leader>.` | Find outgoing calls for the symbol under the cursor. |
+| Normal | `<leader>a` | List and execute LSP code actions. |
+| Normal | `<leader>s` | Show symbols in the current document. |
+| Normal | `<leader>w` | Live search for symbols across the workspace. |
+| Normal | `<leader>r` | Find references to the symbol under the cursor. |
+| Normal | `<leader>i` | Find implementations of the symbol under the cursor. |
+| Normal | `<leader>o` | Go to the type definition of the symbol under the cursor. |
+| Normal | `<leader>j` | Go to the definition of the symbol under the cursor. |
+| Normal | `<leader>v` | Go to the declaration of the symbol under the cursor. |
+
+### Language Server Protocol (LSP) & Diagnostics
+
+This table combines the default LSP keybindings with your custom mappings for a complete overview of language-aware features.
+
+| Mode | Keybinding | Action |
+| :--- | :--- | :--- |
+| Normal | `<leader>b` | Formats the current buffer. |
+| Insert | `<C-Space>` | Manually triggers completion suggestions. |
+| Normal | `grn` | Rename the symbol under the cursor. |
+| Normal | `grr` | List references for the symbol under the cursor. |
+| Normal | `gri` | Go to the implementation of the symbol. |
+| Normal | `gO` | Show a table of contents (document symbols). |
+| Normal, Visual | `gra` | Show available code actions. |
+| Insert, Select | `CTRL-S` | Show signature help for the current function call. |
+| Normal | `[d` | Move to the previous diagnostic in the buffer. |
+| Normal | `]d` | Move to the next diagnostic in the buffer. |
+| Normal | `[D` | Jump to the first diagnostic in the buffer. |
+| Normal | `]D` | Jump to the last diagnostic in the buffer. |
+
+### List & Buffer Navigation
+
+These keymaps help you navigate through various Vim lists like quickfix, buffers, and more.
+
+| Mode | Keybinding | Action |
+| :--- | :--- | :--- |
+| **Quickfix List** | | |
+| Normal | `[q` / `]q` | Navigate previous/next in the quickfix list. |
+| Normal | `[Q` / `]Q` | Jump to the first/last entry in the quickfix list. |
+| Normal | `[CTRL-Q` / `]CTRL-Q`| Navigate previous/next in the quickfix list. |
+| **Location List** | | |
+| Normal | `[l` / `]l` | Navigate previous/next in the location list. |
+| Normal | `[L` / `]L` | Jump to the first/last entry in the location list. |
+| Normal | `[CTRL-L` / `]CTRL-L`| Navigate previous/next in the location list. |
+| **Other Lists** | | |
+| Normal | `[b` / `]b` | Navigate to the previous/next buffer. |
+| Normal | `[B` / `]B` | Jump to the first/last buffer. |
+| Normal | `[a` / `]a` | Navigate the argument list. |
+| Normal | `[t` / `]t` | Navigate the tag matchlist. |
+
+### Oil.nvim (File Explorer)
+
+The following are the **default** keybindings available when an `oil.nvim` buffer is active.
+
+| Mode | Keybinding | Action |
+| :--- | :--- | :--- |
+| Normal | `<CR>` | Select and open the file or directory. |
+| Normal | `<C-s>` | Open the selection in a vertical split. |
+| Normal | `<C-h>` | Open the selection in a horizontal split. |
+| Normal | `<C-t>` | Open the selection in a new tab. |
+| Normal | `<C-p>` | Preview the file. |
+| Normal | `<C-c>` | Close the oil buffer. |
+| Normal | `<C-l>` | Refresh the directory listing. |
+| Normal | `-` | Go to the parent directory. |
+| Normal | `_` | Open a new oil buffer in the current working directory. |
+| Normal | `` ` `` | Change Neovim's directory to the current oil directory. |
+| Normal | `g?` | Show help for oil actions. |
+| Normal | `gs` | Change the sorting method (by name, size, etc.). |
+| Normal | `gx` | Open the selected file with its default external program. |
+| Normal | `g.` | Toggle the visibility of hidden files. |
+| Normal | `g\` | Toggle whether to move files to the system trash. |
