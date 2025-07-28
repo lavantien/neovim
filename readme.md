@@ -1,30 +1,32 @@
 # vanilla and sane config for neovim
 
-giga minimal neovim config for programmers
+giga minimal neovim config for programmers with sane defaults, native lsp, treesitter, and completion, with a modern touch of `oil`, `fzf-lua`, `fidget`, and `typst-preview`
+
+![preview](./preview.png)
 
 ## requirements
 
-- neovim 0.12+
+- neovim 0.12+, tree-sitter
 - git, fzf, rg, fd, bat, delta, chafa
 - **lua, luajit**, lua-language-server
 - **c, llvm, clang**, clangd
 - **go**, gopls
 - **rust**, rust-analyzer
 - **python**, pyright
-- **typescript**, typescript-language-server
+- **typescript, node**, typescript-language-server
 - **java, jdk**, jdtls
 - **csharp**, csharp-ls
 - **typst**, tinymist
-- **docker**, dockerls, compose-language-service
-- yaml-language-server
+- **docker**, docker-language-server, compose-language-service
+- yaml-language-server, tombi
 - codebook-lsp
 
-## update all dependencies
+## update all dependencies one liner
 
 ### windows
 
 ```bash
-gup update && cargo install-update -a && scoop update -a && winget upgrade --all -u
+npm update -g && yarn global upgrade && gup update && cargo install-update -a && scoop update -a && winget upgrade --all -u
 ```
 
 ## references
@@ -35,6 +37,9 @@ gup update && cargo install-update -a && scoop update -a && winget upgrade --all
 
 ## keymap
 
+<details>
+    <summary>...more</summary>
+
 `<leader>` key is set to `Space`.
 
 ### General & Custom Keybinds
@@ -43,8 +48,9 @@ These are top-level custom mappings for various actions within Neovim.
 
 | Mode | Keybinding | Action |
 | :--- | :--- | :--- |
-| Normal | `<leader>q` | Quits current window (e.g. quickfix window). |
 | Normal | `-` | Opens the parent directory in `oil.nvim`. |
+| Normal | `<leader>q` | Quits current window (e.g. quickfix window). |
+| Normal | `<leader>x` | Save and source. |
 | Normal | `<leader>p` | Toggles the `typst-preview` window. |
 | Normal | `<leader>u` | Triggers an update for installed packages. |
 | Normal | `[<Space>` | Adds an empty line above the cursor. |
@@ -153,3 +159,4 @@ have configured `fzf-lua` for searching files, git history, LSP features, and mo
 | Normal | `<leader>j` | Go to the definition of the symbol under the cursor. |
 | Normal | `<leader>v` | Go to the declaration of the symbol under the cursor. |
 
+</details>

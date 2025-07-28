@@ -26,15 +26,28 @@ vim.g.loaded_netrwPlugin = 0
 vim.g.have_nerd_font = true
 
 vim.pack.add({
-    { src = 'https://github.com/vague2k/vague.nvim' },
-    { src = 'https://github.com/neovim/nvim-lspconfig' },
+    { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' }, -- wrappers for built-in
+    { src = 'https://github.com/neovim/nvim-lspconfig' },           -- wrappers for built-in
     { src = 'https://github.com/stevearc/oil.nvim' },
     { src = 'https://github.com/chomosuke/typst-preview.nvim' },
+    { src = 'https://github.com/nvim-tree/nvim-web-devicons' }, -- fzf-lua dep
     { src = 'https://github.com/ibhagwan/fzf-lua' },
+    { src = 'https://github.com/j-hui/fidget.nvim' },
 })
 
+vim.opt.background = 'light'
+vim.cmd.colorscheme('gruvbox')
+vim.cmd(':hi statusline guibg=NONE')
+
+vim.lsp.config['docker_ls'] = {
+    cmd = { 'docker-language-server' },
+    filetypes = { 'Dockerfile', 'dockerfile', 'compose.yaml', 'compose.yml', 'bake.json', 'bake.hcl' },
+    root_markers = { 'Dockerfile', 'dockerfile', 'compose.yaml', 'compose.yml', 'bake.json', 'bake.hcl' },
+}
+
 vim.lsp.enable({ 'lua_ls', 'clangd', 'gopls', 'rust_analyzer', 'pyright', 'ts_ls', 'jdtls', 'csharp_ls', 'tinymist',
-    'dockerls', 'docker_compose_language_service', 'yamlls', 'codebook' })
+    'docker_ls', 'docker_compose_language_service', 'yamlls', 'tombi', 'codebook' })
 
 vim.lsp.config('*', {
     capabilities = {
@@ -70,13 +83,23 @@ vim.diagnostic.config({
     virtual_lines = { current_line = true },
 })
 
+require('nvim-treesitter.configs').setup({
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+})
+
 require('oil').setup()
 require('typst-preview').setup()
-require('fzf-lua').setup({'fzf-native'})
+require('nvim-web-devicons').setup()
+require('fzf-lua').setup({ 'fzf-native' })
+require('fidget').setup()
 
--- remain: <leader>x 
-vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>x', ':w<CR>:so<CR>')
 vim.keymap.set('n', '<leader>p', ':TypstPreviewToggle<CR>')
 vim.keymap.set('n', '<leader>b', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>u', vim.pack.update)
@@ -112,9 +135,6 @@ vim.keymap.set('n', '<leader>i', FzfLua.lsp_implementations)
 vim.keymap.set('n', '<leader>o', FzfLua.lsp_typedefs)
 vim.keymap.set('n', '<leader>j', FzfLua.lsp_definitions)
 vim.keymap.set('n', '<leader>v', FzfLua.lsp_declarations)
-
-vim.cmd('colorscheme vague')
-vim.cmd(':hi statusline guibg=NONE')
 
 -- plugins hidden keymaps
 
