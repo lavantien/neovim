@@ -1,5 +1,7 @@
 # vanilla and sane config for neovim
 
+giga minimal neovim config for programmers
+
 ## requirements
 
 - neovim 0.12+
@@ -13,13 +15,13 @@
 - **typst**, tinymist
 - **docker**, dockerls, compose-language-service
 - yaml-language-server
-- codebook
+- codebook-lsp
 
 ## update all dependencies
 
 ### windows
 
-```pwsh
+```bash
 gup update && cargo install-update -a && scoop update -a && winget upgrade --all -u
 ```
 
