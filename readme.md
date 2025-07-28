@@ -40,7 +40,7 @@ These are the keybindings explicitly defined in the configuration files.
 | Keymap | Mode | Action | Description |
 | :--- | :--- | :--- | :--- |
 | ` ` (Space) | | `mapleader` | The leader key for custom shortcuts. |
-| `<leader>q` | Normal | `:quit<CR>` | Quits Neovim. |
+| `<leader>q` | Normal | `:quit<CR>` | Quits current window (e.g. location list). |
 | `-` | Normal | `<CMD>Oil<CR>` | Opens the parent directory using oil.nvim. |
 | `<leader>b` | Normal | `vim.lsp.buf.format` | Formats the current buffer using the LSP. |
 | `<leader>f` | Normal | `MiniPick.builtin.files` | Finds files using mini.pick. |
