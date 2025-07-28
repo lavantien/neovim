@@ -39,81 +39,20 @@ gup update && cargo install-update -a && scoop update -a && winget upgrade --all
 
 ### General & Custom Keybinds
 
-These are your top-level custom mappings for various actions within Neovim.
+These are top-level custom mappings for various actions within Neovim.
 
 | Mode | Keybinding | Action |
 | :--- | :--- | :--- |
-| Normal | `<leader>q` | Quits Neovim. |
+| Normal | `<leader>q` | Quits current window (e.g. quickfix window). |
 | Normal | `-` | Opens the parent directory in `oil.nvim`. |
 | Normal | `<leader>p` | Toggles the `typst-preview` window. |
-| Normal | `<leader>u` | Triggers an update for your installed packages. |
+| Normal | `<leader>u` | Triggers an update for installed packages. |
 | Normal | `[<Space>` | Adds an empty line above the cursor. |
 | Normal | `]<Space>` | Adds an empty line below the cursor. |
 
-### FZF-Lua Keybinds
-
-You have configured `fzf-lua` for searching files, git history, LSP features, and more.
-
-| Mode | Keybinding | Action |
-| :--- | :--- | :--- |
-| **General** | | |
-| Normal | `<leader>e` | Global search across various sources. |
-| Normal | `<leader>n` | Combined search (files, buffers, etc.). |
-| Normal | `<leader>/` | Grep for a pattern in the current buffer. |
-| Normal | `<leader>z` | Live grep across your project. |
-| Normal | `<leader>f` | Search for files by name. |
-| Normal | `<leader>h` | Search help tags. |
-| Normal | `<leader>k` | Search available keymaps. |
-| Normal | `<leader>l` | Search the location list. |
-| Normal | `<leader>m` | Search marks. |
-| Normal | `<leader>t` | Search the quickfix list. |
-| **Git** | | |
-| Normal | `<leader>gf` | Search through Git files in the current repository. |
-| Normal | `<leader>gs` | Show Git status. |
-| Normal | `<leader>gd` | Show Git diff. |
-| Normal | `<leader>gh` | Search through Git hunks. |
-| Normal | `<leader>gc` | Search through Git commits. |
-| Normal | `<leader>gl` | View Git blame for the current file. |
-| Normal | `<leader>gb` | Search and switch between Git branches. |
-| Normal | `<leader>gt` | Search Git tags. |
-| Normal | `<leader>gk` | Search your Git stash. |
-| **LSP (via FZF)** | | |
-| Normal | `<leader>\\` | General LSP finder. |
-| Normal | `<leader>d` | Show diagnostics for the current document. |
-| Normal | `<leader>'` | Show diagnostics for the entire workspace. |
-| Normal | `<leader>,` | Find incoming calls for the symbol under the cursor. |
-| Normal | `<leader>.` | Find outgoing calls for the symbol under the cursor. |
-| Normal | `<leader>a` | List and execute LSP code actions. |
-| Normal | `<leader>s` | Show symbols in the current document. |
-| Normal | `<leader>w` | Live search for symbols across the workspace. |
-| Normal | `<leader>r` | Find references to the symbol under the cursor. |
-| Normal | `<leader>i` | Find implementations of the symbol under the cursor. |
-| Normal | `<leader>o` | Go to the type definition of the symbol under the cursor. |
-| Normal | `<leader>j` | Go to the definition of the symbol under the cursor. |
-| Normal | `<leader>v` | Go to the declaration of the symbol under the cursor. |
-
-### Language Server Protocol (LSP) & Diagnostics
-
-This table combines the default LSP keybindings with your custom mappings for a complete overview of language-aware features.
-
-| Mode | Keybinding | Action |
-| :--- | :--- | :--- |
-| Normal | `<leader>b` | Formats the current buffer. |
-| Insert | `<C-Space>` | Manually triggers completion suggestions. |
-| Normal | `grn` | Rename the symbol under the cursor. |
-| Normal | `grr` | List references for the symbol under the cursor. |
-| Normal | `gri` | Go to the implementation of the symbol. |
-| Normal | `gO` | Show a table of contents (document symbols). |
-| Normal, Visual | `gra` | Show available code actions. |
-| Insert, Select | `CTRL-S` | Show signature help for the current function call. |
-| Normal | `[d` | Move to the previous diagnostic in the buffer. |
-| Normal | `]d` | Move to the next diagnostic in the buffer. |
-| Normal | `[D` | Jump to the first diagnostic in the buffer. |
-| Normal | `]D` | Jump to the last diagnostic in the buffer. |
-
 ### List & Buffer Navigation
 
-These keymaps help you navigate through various Vim lists like quickfix, buffers, and more.
+These keymaps help navigate through various Vim lists like quickfix, buffers, and more.
 
 | Mode | Keybinding | Action |
 | :--- | :--- | :--- |
@@ -130,6 +69,25 @@ These keymaps help you navigate through various Vim lists like quickfix, buffers
 | Normal | `[B` / `]B` | Jump to the first/last buffer. |
 | Normal | `[a` / `]a` | Navigate the argument list. |
 | Normal | `[t` / `]t` | Navigate the tag matchlist. |
+
+### Language Server Protocol (LSP) & Diagnostics
+
+This table combines the default LSP keybindings with custom mappings for a complete overview of language-aware features.
+
+| Mode | Keybinding | Action |
+| :--- | :--- | :--- |
+| Normal | `<leader>b` | Formats the current buffer. |
+| Insert | `<C-Space>` | Manually triggers completion suggestions. |
+| Normal | `grn` | Rename the symbol under the cursor. |
+| Normal | `grr` | List references for the symbol under the cursor. |
+| Normal | `gri` | Go to the implementation of the symbol. |
+| Normal | `gO` | Show a table of contents (document symbols). |
+| Normal, Visual | `gra` | Show available code actions. |
+| Insert, Select | `CTRL-S` | Show signature help for the current function call. |
+| Normal | `[d` | Move to the previous diagnostic in the buffer. |
+| Normal | `]d` | Move to the next diagnostic in the buffer. |
+| Normal | `[D` | Jump to the first diagnostic in the buffer. |
+| Normal | `]D` | Jump to the last diagnostic in the buffer. |
 
 ### Oil.nvim (File Explorer)
 
@@ -152,3 +110,46 @@ The following are the **default** keybindings available when an `oil.nvim` buffe
 | Normal | `gx` | Open the selected file with its default external program. |
 | Normal | `g.` | Toggle the visibility of hidden files. |
 | Normal | `g\` | Toggle whether to move files to the system trash. |
+
+### FZF-Lua Keybinds
+
+have configured `fzf-lua` for searching files, git history, LSP features, and more.
+
+| Mode | Keybinding | Action |
+| :--- | :--- | :--- |
+| **General** | | |
+| Normal | `<leader>e` | Global search across various sources. |
+| Normal | `<leader>n` | Combined search (files, buffers, etc.). |
+| Normal | `<leader>/` | Grep for a pattern in the current buffer. |
+| Normal | `<leader>z` | Live grep across project. |
+| Normal | `<leader>f` | Search for files by name. |
+| Normal | `<leader>h` | Search help tags. |
+| Normal | `<leader>k` | Search available keymaps. |
+| Normal | `<leader>l` | Search the location list. |
+| Normal | `<leader>m` | Search marks. |
+| Normal | `<leader>t` | Search the quickfix list. |
+| **Git** | | |
+| Normal | `<leader>gf` | Search through Git files in the current repository. |
+| Normal | `<leader>gs` | Show Git status. |
+| Normal | `<leader>gd` | Show Git diff. |
+| Normal | `<leader>gh` | Search through Git hunks. |
+| Normal | `<leader>gc` | Search through Git commits. |
+| Normal | `<leader>gl` | View Git blame for the current file. |
+| Normal | `<leader>gb` | Search and switch between Git branches. |
+| Normal | `<leader>gt` | Search Git tags. |
+| Normal | `<leader>gk` | Search Git stash. |
+| **LSP (via FZF)** | | |
+| Normal | `<leader>\\` | General LSP finder. |
+| Normal | `<leader>d` | Show diagnostics for the current document. |
+| Normal | `<leader>'` | Show diagnostics for the entire workspace. |
+| Normal | `<leader>,` | Find incoming calls for the symbol under the cursor. |
+| Normal | `<leader>.` | Find outgoing calls for the symbol under the cursor. |
+| Normal | `<leader>a` | List and execute LSP code actions. |
+| Normal | `<leader>s` | Show symbols in the current document. |
+| Normal | `<leader>w` | Live search for symbols across the workspace. |
+| Normal | `<leader>r` | Find references to the symbol under the cursor. |
+| Normal | `<leader>i` | Find implementations of the symbol under the cursor. |
+| Normal | `<leader>o` | Go to the type definition of the symbol under the cursor. |
+| Normal | `<leader>j` | Go to the definition of the symbol under the cursor. |
+| Normal | `<leader>v` | Go to the declaration of the symbol under the cursor. |
+
