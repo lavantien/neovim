@@ -6,6 +6,7 @@ giga minimal neovim config for programmers
 
 - neovim 0.12+
 - **lua, luajit**, lua-language-server
+- **c, llvm, clang**, clangd
 - **go**, gopls
 - **rust**, rust-analyzer
 - **python**, pyright

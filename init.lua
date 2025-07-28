@@ -33,8 +33,8 @@ vim.pack.add({
     { src = 'https://github.com/chomosuke/typst-preview.nvim' },
 })
 
-vim.lsp.enable({ 'lua_ls', 'gopls', 'rust_analyzer', 'pyright', 'ts_ls', 'jdtls', 'csharp_ls', 'tinymist', 'dockerls',
-    'docker_compose_language_service', 'yamlls', 'codebook' })
+vim.lsp.enable({ 'lua_ls', 'clangd', 'gopls', 'rust_analyzer', 'pyright', 'ts_ls', 'jdtls', 'csharp_ls', 'tinymist',
+    'dockerls', 'docker_compose_language_service', 'yamlls', 'codebook' })
 
 vim.lsp.config('*', {
     capabilities = {
