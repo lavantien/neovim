@@ -40,6 +40,21 @@ vim.opt.background = 'light'
 vim.cmd.colorscheme('gruvbox')
 vim.cmd(':hi statusline guibg=NONE')
 
+require('fzf-lua').setup({
+    'fzf-native',
+    winopts = {
+        preview = {
+            default = 'bat',
+        },
+    },
+    previewers = {
+        bat = {
+            cmd = "bat",
+            args = "--theme=gruvbox-light --color=always --style=numbers,changes",
+        },
+    },
+})
+
 vim.lsp.config['docker_ls'] = {
     cmd = { 'docker-language-server' },
     filetypes = { 'Dockerfile', 'dockerfile', 'compose.yaml', 'compose.yml', 'bake.json', 'bake.hcl' },
@@ -94,7 +109,6 @@ require('nvim-treesitter.configs').setup({
 require('oil').setup()
 require('typst-preview').setup()
 require('nvim-web-devicons').setup()
-require('fzf-lua').setup({ 'fzf-native' })
 require('fidget').setup()
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
