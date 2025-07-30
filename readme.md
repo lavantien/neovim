@@ -1,6 +1,6 @@
 # vanilla and sane config for neovim
 
-giga minimal neovim config for programmers with sane defaults, native lsp, treesitter, and completion, with a modern touch of `oil`, `fzf-lua`, `fidget`, and `typst-preview`
+giga minimal neovim config for programmers with sane defaults, native lsp, treesitter, and completion, with a modern touch of `oil`, `fzf-lua`, `fidget`, `live-preview`, and `typst-preview`
 
 ![preview](./preview.png)
 
@@ -51,7 +51,9 @@ These are top-level custom mappings for various actions within Neovim.
 | Normal | `-` | Opens the parent directory in `oil.nvim`. |
 | Normal | `<leader>q` | Quits current window (e.g. quickfix window). |
 | Normal | `<leader>x` | Save and source. |
-| Normal | `<leader>p` | Toggles the `typst-preview` window. |
+| Normal | `<leader>pt` | Toggles the `typst-preview` external browser tab for `typst`. |
+| Normal | `<leader>ps` | Start the `live-preview` live server for `markdown`, `svg`, `html`, etc. |
+| Normal | `<leader>pc` | Close the `live-preview` live server |
 | Normal | `<leader>u` | Triggers an update for installed packages. |
 | Normal | `[<Space>` | Adds an empty line above the cursor. |
 | Normal | `]<Space>` | Adds an empty line below the cursor. |
@@ -124,6 +126,7 @@ have configured `fzf-lua` for searching files, git history, LSP features, and mo
 | Mode | Keybinding | Action |
 | :--- | :--- | :--- |
 | **General** | | |
+| Normal | `<leader>;` | Pick a file to live preview. |
 | Normal | `<leader>e` | Global search across various sources. |
 | Normal | `<leader>n` | Combined search (files, buffers, etc.). |
 | Normal | `<leader>/` | Grep for a pattern in the current buffer. |

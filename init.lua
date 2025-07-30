@@ -30,10 +30,11 @@ vim.pack.add({
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' }, -- wrappers for built-in
     { src = 'https://github.com/neovim/nvim-lspconfig' },           -- wrappers for built-in
     { src = 'https://github.com/stevearc/oil.nvim' },
-    { src = 'https://github.com/chomosuke/typst-preview.nvim' },
-    { src = 'https://github.com/nvim-tree/nvim-web-devicons' }, -- fzf-lua dep
+    { src = 'https://github.com/nvim-tree/nvim-web-devicons' },     -- fzf-lua dep
     { src = 'https://github.com/ibhagwan/fzf-lua' },
     { src = 'https://github.com/j-hui/fidget.nvim' },
+    { src = 'https://github.com/chomosuke/typst-preview.nvim' },  -- typst live preview
+    { src = 'https://github.com/brianhuster/live-preview.nvim' }, -- markdown, html, csv live preview
 })
 
 vim.opt.background = 'light'
@@ -98,6 +99,15 @@ vim.diagnostic.config({
     virtual_lines = { current_line = true },
 })
 
+-- autosave on leaving insert mode
+vim.o.autowriteall = true
+vim.api.nvim_create_autocmd({ 'InsertLeavePre', 'TextChanged', 'TextChangedP' }, {
+    pattern = '*',
+    callback = function()
+        vim.cmd('silent! write')
+    end
+})
+
 require('nvim-treesitter.configs').setup({
     auto_install = true,
     highlight = {
@@ -107,14 +117,18 @@ require('nvim-treesitter.configs').setup({
 })
 
 require('oil').setup()
-require('typst-preview').setup()
 require('nvim-web-devicons').setup()
 require('fidget').setup()
+require('typst-preview').setup()
+require('livepreview').setup()
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>x', ':w<CR>:so<CR>')
-vim.keymap.set('n', '<leader>p', ':TypstPreviewToggle<CR>')
+vim.keymap.set('n', '<leader>pt', ':TypstPreviewToggle<CR>')
+vim.keymap.set('n', '<leader>ps', ':LivePreview start .<CR>')
+vim.keymap.set('n', '<leader>pc', ':LivePreview close<CR>')
+vim.keymap.set('n', '<leader>;', ':LivePreview pick<CR>')
 vim.keymap.set('n', '<leader>b', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>u', vim.pack.update)
 vim.keymap.set('n', '<leader>e', FzfLua.global)
