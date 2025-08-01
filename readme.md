@@ -16,6 +16,7 @@ giga minimal neovim config for programmers with sane defaults, native lsp, trees
 - **typescript, node**, typescript-language-server
 - **java, jdk**, jdtls
 - **csharp**, csharp-ls
+- **dart, flutter-sdk**, dartls
 - **typst**, tinymist
 - **docker**, docker-language-server, compose-language-service
 - yaml-language-server, tombi

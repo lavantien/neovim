@@ -62,8 +62,23 @@ vim.lsp.config['docker_ls'] = {
     root_markers = { 'Dockerfile', 'dockerfile', 'compose.yaml', 'compose.yml', 'bake.json', 'bake.hcl' },
 }
 
-vim.lsp.enable({ 'lua_ls', 'clangd', 'gopls', 'rust_analyzer', 'pyright', 'ts_ls', 'jdtls', 'csharp_ls', 'tinymist',
-    'docker_ls', 'docker_compose_language_service', 'yamlls', 'tombi', 'codebook' })
+vim.lsp.enable({
+    'lua_ls',
+    'clangd',
+    'gopls',
+    'rust_analyzer',
+    'pyright',
+    'ts_ls',
+    'jdtls',
+    'csharp_ls',
+    'dartls',
+    'tinymist',
+    'docker_ls',
+    'docker_compose_language_service',
+    'yamlls',
+    'tombi',
+    'codebook'
+})
 
 vim.lsp.config('*', {
     capabilities = {
