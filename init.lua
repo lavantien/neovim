@@ -4,6 +4,7 @@ vim.opt.inccommand = 'split'
 vim.opt.signcolumn = 'yes'
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.showcmd = true
 vim.opt.undofile = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
