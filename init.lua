@@ -75,6 +75,16 @@ vim.lsp.enable({
     'codebook'
 })
 
+vim.lsp.config('lua_ls', {
+    settings = {
+        Lua = {
+            workspace = {
+                library = vim.api.nvim_get_runtime_file('', true),
+            },
+        },
+    },
+})
+
 vim.lsp.config('*', {
     capabilities = {
         textDocument = {
@@ -125,13 +135,14 @@ require('nvim-treesitter.configs').setup({
 
 require('oil').setup()
 require('nvim-web-devicons').setup()
-require('fidget').setup()
+require('fidget').setup({})
 require('typst-preview').setup()
 require('livepreview').setup()
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>x', ':w<CR>:so<CR>')
+vim.keymap.set('n', '<leader>\'', ':sf #<CR>')
 vim.keymap.set('n', '<leader>pt', ':TypstPreviewToggle<CR>')
 vim.keymap.set('n', '<leader>ps', ':LivePreview start .<CR>')
 vim.keymap.set('n', '<leader>pc', ':LivePreview close<CR>')
@@ -158,8 +169,8 @@ vim.keymap.set('n', '<leader>gb', FzfLua.git_branches)
 vim.keymap.set('n', '<leader>gt', FzfLua.git_tags)
 vim.keymap.set('n', '<leader>gk', FzfLua.git_stash)
 vim.keymap.set('n', '<leader>\\', FzfLua.lsp_finder)
-vim.keymap.set('n', '<leader>d', FzfLua.lsp_document_diagnostics)
-vim.keymap.set('n', '<leader>\'', FzfLua.lsp_workspace_diagnostics)
+vim.keymap.set('n', '<leader>dd', FzfLua.lsp_document_diagnostics)
+vim.keymap.set('n', '<leader>dw', FzfLua.lsp_workspace_diagnostics)
 vim.keymap.set('n', '<leader>,', FzfLua.lsp_incoming_calls)
 vim.keymap.set('n', '<leader>.', FzfLua.lsp_outgoing_calls)
 vim.keymap.set('n', '<leader>a', FzfLua.lsp_code_actions)

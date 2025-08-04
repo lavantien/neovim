@@ -52,6 +52,7 @@ These are top-level custom mappings for various actions within Neovim.
 | Normal | `-` | Opens the parent directory in `oil.nvim`. |
 | Normal | `<leader>q` | Quits current window (e.g. quickfix window). |
 | Normal | `<leader>x` | Save and source. |
+| Normal | `<leader>'` | Open current file in a horizontal split. |
 | Normal | `<leader>pt` | Toggles the `typst-preview` external browser tab for `typst`. |
 | Normal | `<leader>ps` | Start the `live-preview` live server for `markdown`, `svg`, `html`, etc. |
 | Normal | `<leader>pc` | Close the `live-preview` live server |
@@ -86,7 +87,7 @@ This table combines the default LSP keybindings with custom mappings for a compl
 | Mode | Keybinding | Action |
 | :--- | :--- | :--- |
 | Normal | `<leader>b` | Formats the current buffer. |
-| Insert | `<C-Space>` | Manually triggers completion suggestions. |
+| Insert | `<C-w>d` | Toggle window's diagnostics. |
 | Normal | `grn` | Rename the symbol under the cursor. |
 | Normal | `grr` | List references for the symbol under the cursor. |
 | Normal | `gri` | Go to the implementation of the symbol. |
@@ -150,8 +151,8 @@ have configured `fzf-lua` for searching files, git history, LSP features, and mo
 | Normal | `<leader>gk` | Search Git stash. |
 | **LSP (via FZF)** | | |
 | Normal | `<leader>\\` | General LSP finder. |
-| Normal | `<leader>d` | Show diagnostics for the current document. |
-| Normal | `<leader>'` | Show diagnostics for the entire workspace. |
+| Normal | `<leader>dd` | Show diagnostics for the current document. |
+| Normal | `<leader>dw` | Show diagnostics for the entire workspace. |
 | Normal | `<leader>,` | Find incoming calls for the symbol under the cursor. |
 | Normal | `<leader>.` | Find outgoing calls for the symbol under the cursor. |
 | Normal | `<leader>a` | List and execute LSP code actions. |
