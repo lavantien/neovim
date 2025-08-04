@@ -57,12 +57,6 @@ require('fzf-lua').setup({
     },
 })
 
-vim.lsp.config['docker_ls'] = {
-    cmd = { 'docker-language-server' },
-    filetypes = { 'Dockerfile', 'dockerfile', 'compose.yaml', 'compose.yml', 'bake.json', 'bake.hcl' },
-    root_markers = { 'Dockerfile', 'dockerfile', 'compose.yaml', 'compose.yml', 'bake.json', 'bake.hcl' },
-}
-
 vim.lsp.enable({
     'lua_ls',
     'clangd',
@@ -74,7 +68,7 @@ vim.lsp.enable({
     'csharp_ls',
     'dartls',
     'tinymist',
-    'docker_ls',
+    'docker_language_server',
     'docker_compose_language_service',
     'yamlls',
     'tombi',
@@ -103,9 +97,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
             vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
             vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-            vim.keymap.set('i', '<C-Space>', function()
-                vim.lsp.completion.get()
-            end)
         end
     end,
 })
