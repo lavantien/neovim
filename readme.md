@@ -27,7 +27,7 @@ giga minimal neovim config for programmers with sane defaults, native lsp, trees
 ### windows
 
 ```bash
-npm update -g && yarn global upgrade && gup update && cargo install-update -a && scoop update -a && winget upgrade --all -u
+npm update -g && yarn global upgrade && gup update -a && scoop update -a && winget upgrade --all -u && cargo install-update
 ```
 
 ## references
