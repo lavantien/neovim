@@ -4,6 +4,8 @@ giga minimal neovim config for programmers with sane defaults, native lsp, trees
 
 ![preview](./preview.png)
 
+This should now be maintained at my dotfiles instead: <https://github.com/lavantien/dotfiles>
+
 ## requirements
 
 - neovim 0.12+, tree-sitter
